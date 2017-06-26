@@ -221,6 +221,15 @@ public class JFrame_reg_vendedor extends javax.swing.JFrame {
 
     private void jButton_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_nuevoActionPerformed
         inicializar();
+        Conexion con = new Conexion();
+        String[] codigos = {"id_cliente" + "cie_cedula" + "cie_nombre" + "cie_apellido" + "cie_direccio"};
+        String[] campos = new String[codigos.length];
+        campos[0] = jTextField_id.getText().toUpperCase();
+        campos[1] = jTextField_cedula.getText().toUpperCase();
+        campos[2] = jTextField_nombre.getText().toUpperCase();
+        campos[3] = jTextField_apellido.getText().toUpperCase();
+        campos[4] = jTextField_direccion.getText().toUpperCase();
+        con.escribir("vendedor", codigos, campos);
     }//GEN-LAST:event_jButton_nuevoActionPerformed
 
     private void jButton_guardarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jButton_guardarStateChanged
@@ -316,6 +325,7 @@ public class JFrame_reg_vendedor extends javax.swing.JFrame {
             }
         }
     }
+
     /**
      * @param args the command line arguments
      */

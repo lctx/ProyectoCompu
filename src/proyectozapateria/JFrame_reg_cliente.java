@@ -221,7 +221,6 @@ public class JFrame_reg_cliente extends javax.swing.JFrame {
 
     private void jButton_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_nuevoActionPerformed
         inicializar();
-        GuardarCliente();
     }//GEN-LAST:event_jButton_nuevoActionPerformed
 
     private void jButton_guardarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jButton_guardarStateChanged
