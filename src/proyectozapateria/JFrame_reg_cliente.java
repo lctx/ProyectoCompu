@@ -6,6 +6,9 @@
 package proyectozapateria;
 
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -193,11 +196,12 @@ public class JFrame_reg_cliente extends javax.swing.JFrame {
 
     private void jTextField_idKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_idKeyTyped
         // TODO add your handling code here:
-        bloquear(jTextField_id, evt, 10, false);
+        
     }//GEN-LAST:event_jTextField_idKeyTyped
 
     private void jButton_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_guardarActionPerformed
         // TODO add your handling code here:
+        GuardarCliente();
     }//GEN-LAST:event_jButton_guardarActionPerformed
 
     private void jTextField_cedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_cedulaKeyTyped
@@ -217,6 +221,7 @@ public class JFrame_reg_cliente extends javax.swing.JFrame {
 
     private void jButton_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_nuevoActionPerformed
         inicializar();
+        GuardarCliente();
     }//GEN-LAST:event_jButton_nuevoActionPerformed
 
     private void jButton_guardarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jButton_guardarStateChanged
@@ -263,6 +268,52 @@ public class JFrame_reg_cliente extends javax.swing.JFrame {
     public void bloquear(JTextField text, KeyEvent evt) {
         if (Character.isDigit(evt.getKeyChar())) {
             evt.consume();
+        }
+    }
+
+    public void GuardarCliente() {
+        if (jTextField_id.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Ingrese la ID");
+            jTextField_id.requestFocus(true);
+        } else if (jTextField_cedula.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese la Cedula");
+            jTextField_cedula.requestFocus(true);
+
+        } else if (jTextField_nombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese el Nombre");
+            jTextField_nombre.requestFocus(true);
+        } else if (jTextField_apellido.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese el Apellido");
+            jTextField_apellido.requestFocus(true);
+        } else if (jTextField_direccion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese la Direccion");
+            jTextField_direccion.requestFocus(true);
+        } else {
+            String id_cliente, cie_cedula, cie_nombre, cie_apellido, cie_direccion;
+            id_cliente = jTextField_id.getText();
+            cie_cedula = jTextField_cedula.getText();
+            cie_nombre = jTextField_nombre.getText();
+            cie_apellido = jTextField_apellido.getText();
+            cie_direccion = jTextField_direccion.getText();
+            Conexion cc = new Conexion();
+            Connection cn = (Connection) cc.conectar();
+            String sql = "";
+            sql = "insert into cliente (id_cliente,cie_cedula,cie_nombre,cie_apellido,cie_direccion) values (?,?,?,?,?) ";
+            try {
+                java.sql.PreparedStatement psd = cn.prepareStatement(sql);
+                psd.setString(1, id_cliente);
+                psd.setString(2, cie_cedula);
+                psd.setString(3, cie_nombre);
+                psd.setString(4, cie_apellido);
+                psd.setString(5, cie_direccion);
+                int n = psd.executeUpdate();
+                if (n > 0) {
+                    JOptionPane.showMessageDialog(null, "Se Inserto el dato correctamente");
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "No Se Inserto el dato correctamente");
+            }
         }
     }
 

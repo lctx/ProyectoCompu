@@ -6,6 +6,9 @@
 package proyectozapateria;
 
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -267,6 +270,52 @@ public class JFrame_reg_vendedor extends javax.swing.JFrame {
         }
     }
 
+    public void GuardarCliente() {
+        if (jTextField_id.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Ingrese la ID");
+            jTextField_id.requestFocus(true);
+        } else if (jTextField_cedula.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese la Cedula");
+            jTextField_cedula.requestFocus(true);
+
+        } else if (jTextField_nombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese el Nombre");
+            jTextField_nombre.requestFocus(true);
+        } else if (jTextField_apellido.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese el Apellido");
+            jTextField_apellido.requestFocus(true);
+        } else if (jTextField_direccion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese la Direccion");
+            jTextField_direccion.requestFocus(true);
+        } else {
+            String id_cliente, cie_cedula, cie_nombre, cie_apellido, cie_direccion;
+            id_cliente = jTextField_id.getText();
+            cie_cedula = jTextField_cedula.getText();
+            cie_nombre = jTextField_nombre.getText();
+            cie_apellido = jTextField_apellido.getText();
+            cie_direccion = jTextField_direccion.getText();
+            Conexion cc = new Conexion();
+            Connection cn = (Connection) cc.conectar();
+            String sql = "";
+            sql = "insert into vendedor (id_cliente,cie_cedula,cie_nombre,cie_apellido,cie_direccion) values (?,?,?,?,?,?,?) ";
+            try {
+                java.sql.PreparedStatement psd = cn.prepareStatement(sql);
+                psd.setString(1, id_cliente);
+                psd.setString(2, cie_cedula);
+                psd.setString(3, cie_nombre);
+                psd.setString(4, cie_apellido);
+                psd.setString(5, cie_direccion);
+                int n = psd.executeUpdate();
+
+                if (n > 0) {
+                    JOptionPane.showMessageDialog(null, "Se Inserto el dato correctamente");
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Se Inserto el dato correctamente");
+            }
+        }
+    }
     /**
      * @param args the command line arguments
      */
