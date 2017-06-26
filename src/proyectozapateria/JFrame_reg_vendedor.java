@@ -159,7 +159,7 @@ public class JFrame_reg_vendedor extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -197,11 +197,20 @@ public class JFrame_reg_vendedor extends javax.swing.JFrame {
 
     private void jTextField_idKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_idKeyTyped
         // TODO add your handling code here:
-        bloquear(jTextField_id, evt, 10, false);
     }//GEN-LAST:event_jTextField_idKeyTyped
 
     private void jButton_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_guardarActionPerformed
         // TODO add your handling code here:
+        Conexion con = new Conexion();
+        con.conectar();
+        String[] codigos = {"ID_VENDEDOR" , "VEN_CEDULA" , "VEN_NOMBRE" , "VEN_APELLIDO" , "VEN_DIRECCION"};
+        String[] campos = new String[codigos.length];
+        campos[0] = jTextField_id.getText().toUpperCase();
+        campos[1] = jTextField_cedula.getText().toUpperCase();
+        campos[2] = jTextField_nombre.getText().toUpperCase();
+        campos[3] = jTextField_apellido.getText().toUpperCase();
+        campos[4] = jTextField_direccion.getText().toUpperCase();
+        con.escribir("vendedor", codigos, campos);
     }//GEN-LAST:event_jButton_guardarActionPerformed
 
     private void jTextField_cedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_cedulaKeyTyped
@@ -221,15 +230,7 @@ public class JFrame_reg_vendedor extends javax.swing.JFrame {
 
     private void jButton_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_nuevoActionPerformed
         inicializar();
-        Conexion con = new Conexion();
-        String[] codigos = {"id_cliente" + "cie_cedula" + "cie_nombre" + "cie_apellido" + "cie_direccio"};
-        String[] campos = new String[codigos.length];
-        campos[0] = jTextField_id.getText().toUpperCase();
-        campos[1] = jTextField_cedula.getText().toUpperCase();
-        campos[2] = jTextField_nombre.getText().toUpperCase();
-        campos[3] = jTextField_apellido.getText().toUpperCase();
-        campos[4] = jTextField_direccion.getText().toUpperCase();
-        con.escribir("vendedor", codigos, campos);
+        
     }//GEN-LAST:event_jButton_nuevoActionPerformed
 
     private void jButton_guardarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jButton_guardarStateChanged

@@ -16,6 +16,8 @@ public class ProyectoZapateria {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        JFrame_reg_vendedor ve= new JFrame_reg_vendedor();
+        ve.setVisible(true);
     }
     
 }

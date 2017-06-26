@@ -52,13 +52,15 @@ public class Conexion {
             for (int i = 0; i < campos.length; i++) {
                 INGRESO.setString(i + 1, campos[i]);
             }
-            INGRESO.executeUpdate();
-
+            int a = INGRESO.executeUpdate();
+            if (a > 0) {
+                JOptionPane.showMessageDialog(null, "Se Inserto el dato correctamente");
+            }
             INGRESO.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Error sql");
-            System.out.println("ingreso fallido");
+            JOptionPane.showMessageDialog(null,"Error sql "+e);
+            JOptionPane.showMessageDialog(null,"ingreso fallido");
         }
 
     }
