@@ -149,6 +149,8 @@ public class Menu extends JFrame {
 
     private void jMenuItem_VentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_VentasActionPerformed
 
+        productos e= new productos();
+        jDesktopPane1.add(e);
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem_VentasActionPerformed
 
