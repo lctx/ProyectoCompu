@@ -28,7 +28,7 @@ import org.apache.commons.codec.digest.DigestUtils;
  *
  * @author G Pro
  */
-public class IngresoUsuario extends javax.swing.JFrame {
+public class IngresoUsuario extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form IngresoUsuario
