@@ -39,11 +39,11 @@ public class Menu extends JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem_Zapateria = new javax.swing.JMenuItem();
+        jMenuItem_Ventas = new javax.swing.JMenuItem();
+        jMenuItem_Usuario = new javax.swing.JMenuItem();
+        jMenuItem_Clientes = new javax.swing.JMenuItem();
+        jMenuItem_Vendedores = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -62,46 +62,46 @@ public class Menu extends JFrame {
             .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("INTERFACE");
+        jMenu1.setText("Ingresos");
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu1ActionPerformed(evt);
             }
         });
 
-        
-        jMenuItem1.setText("ZAPATERIA");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem_Zapateria.setText("Zapateria");
+        jMenuItem_Zapateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItem_ZapateriaActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
-        jMenuItem2.setText("VENTAS");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMenu1.add(jMenuItem_Zapateria);
+
+        jMenuItem_Ventas.setText("Ventas");
+        jMenuItem_Ventas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMenuItem_VentasActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(jMenuItem_Ventas);
 
-        jMenuItem3.setText("USUARIO");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem_Usuario.setText("Usuarios");
+        jMenuItem_Usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jMenuItem_UsuarioActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        jMenu1.add(jMenuItem_Usuario);
 
-        jMenuItem6.setText("CLIENTES");
-        jMenu1.add(jMenuItem6);
+        jMenuItem_Clientes.setText("Clientes");
+        jMenu1.add(jMenuItem_Clientes);
 
-        jMenuItem7.setText("VENDEDOR");
-        jMenu1.add(jMenuItem7);
+        jMenuItem_Vendedores.setText("Vendedores");
+        jMenu1.add(jMenuItem_Vendedores);
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("REPORTES");
+        jMenu2.setText("Reportes");
         jMenu2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu2ActionPerformed(evt);
@@ -147,22 +147,22 @@ public class Menu extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMenuItem_VentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_VentasActionPerformed
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_jMenuItem_VentasActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu1ActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuItem_ZapateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ZapateriaActionPerformed
 //llamar ventana dentro de un deskopt     
 
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMenuItem_ZapateriaActionPerformed
     IngresoUsuario usu = new IngresoUsuario();
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void jMenuItem_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_UsuarioActionPerformed
 
         if (usu.isShowing()) { //si ya se tiene abierto otra ventana
             JOptionPane.showMessageDialog(null, "Ventana activa ");
@@ -174,7 +174,7 @@ public class Menu extends JFrame {
             usu.show();
         }
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_jMenuItem_UsuarioActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
 
@@ -243,13 +243,13 @@ public class Menu extends JFrame {
     private javax.swing.JMenu jMenu1;
     public javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem_Clientes;
+    private javax.swing.JMenuItem jMenuItem_Usuario;
+    private javax.swing.JMenuItem jMenuItem_Vendedores;
+    private javax.swing.JMenuItem jMenuItem_Ventas;
+    private javax.swing.JMenuItem jMenuItem_Zapateria;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

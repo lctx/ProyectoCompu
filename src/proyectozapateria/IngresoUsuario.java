@@ -432,19 +432,19 @@ public void bloquearBotonUpdate() {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jLabel4.setText("Observación :");
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jLabel3.setText("Perfil :");
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jLabel5.setText("Nombre :");
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jLabel2.setText("Contraseña :");
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jLabel1.setText("Usuario :");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -496,7 +496,8 @@ public void bloquearBotonUpdate() {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnGuardarUsuario.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        btnGuardarUsuario.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        btnGuardarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/viajesuta/Imagenes/save_3621 (1).png"))); // NOI18N
         btnGuardarUsuario.setText("Guardar");
         btnGuardarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -504,7 +505,8 @@ public void bloquearBotonUpdate() {
             }
         });
 
-        btnActualizarUsuario.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        btnActualizarUsuario.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        btnActualizarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/viajesuta/Imagenes/user-with-refresh-arrow_icon-icons.com_54730 (1).png"))); // NOI18N
         btnActualizarUsuario.setText("Actualizar");
         btnActualizarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -512,7 +514,8 @@ public void bloquearBotonUpdate() {
             }
         });
 
-        btnSalir.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        btnSalir.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/viajesuta/Imagenes/close_1101 (1).png"))); // NOI18N
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -520,10 +523,12 @@ public void bloquearBotonUpdate() {
             }
         });
 
-        btnCancelarUsuario.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        btnCancelarUsuario.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        btnCancelarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/viajesuta/Imagenes/cancelar-musica.png"))); // NOI18N
         btnCancelarUsuario.setText("Cancelar");
 
-        btnNuevo.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        btnNuevo.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/viajesuta/Imagenes/new_add_user_16734.png"))); // NOI18N
         btnNuevo.setText("Nuevo");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -616,7 +621,7 @@ public void bloquearBotonUpdate() {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();

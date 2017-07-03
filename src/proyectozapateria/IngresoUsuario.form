@@ -86,7 +86,7 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane3" min="-2" pref="181" max="-2" attributes="0"/>
-              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -209,7 +209,7 @@
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="14" style="3"/>
+                  <Font name="Dialog" size="12" style="3"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Observaci&#xf3;n :"/>
               </Properties>
@@ -217,7 +217,7 @@
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="14" style="3"/>
+                  <Font name="Dialog" size="12" style="3"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Perfil :"/>
               </Properties>
@@ -225,7 +225,7 @@
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="14" style="3"/>
+                  <Font name="Dialog" size="12" style="3"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nombre :"/>
               </Properties>
@@ -233,7 +233,7 @@
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="14" style="3"/>
+                  <Font name="Dialog" size="12" style="3"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Contrase&#xf1;a :"/>
               </Properties>
@@ -241,7 +241,7 @@
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="14" style="3"/>
+                  <Font name="Dialog" size="12" style="3"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Usuario :"/>
               </Properties>
@@ -287,7 +287,7 @@
             <Component class="javax.swing.JButton" name="btnGuardarUsuario">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="14" style="3"/>
+                  <Font name="Dialog" size="12" style="3"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/ec/com/viajesuta/Imagenes/save_3621 (1).png"/>
@@ -301,7 +301,7 @@
             <Component class="javax.swing.JButton" name="btnActualizarUsuario">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="14" style="3"/>
+                  <Font name="Dialog" size="12" style="3"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/ec/com/viajesuta/Imagenes/user-with-refresh-arrow_icon-icons.com_54730 (1).png"/>
@@ -315,7 +315,7 @@
             <Component class="javax.swing.JButton" name="btnSalir">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="14" style="3"/>
+                  <Font name="Dialog" size="12" style="3"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/ec/com/viajesuta/Imagenes/close_1101 (1).png"/>
@@ -329,7 +329,7 @@
             <Component class="javax.swing.JButton" name="btnCancelarUsuario">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="14" style="3"/>
+                  <Font name="Dialog" size="12" style="3"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/ec/com/viajesuta/Imagenes/cancelar-musica.png"/>
@@ -340,7 +340,7 @@
             <Component class="javax.swing.JButton" name="btnNuevo">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="14" style="3"/>
+                  <Font name="Dialog" size="12" style="3"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/ec/com/viajesuta/Imagenes/new_add_user_16734.png"/>

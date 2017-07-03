@@ -51,16 +51,14 @@ public class Usuario extends javax.swing.JFrame {
         lblAviso1 = new javax.swing.JLabel();
 
         lblAviso.setBackground(new java.awt.Color(255, 255, 255));
-        lblAviso.setFont(new java.awt.Font("Tahoma", 0, 14));
+        lblAviso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblAviso.setForeground(new java.awt.Color(255, 0, 0));
         lblAviso.setText("USUARIO O CLAVE INCORRECTA");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 2, 14));
         jLabel1.setText("Usuario : ");
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 2, 14));
         jLabel2.setText("Contraseña :");
 
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -69,7 +67,6 @@ public class Usuario extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 2, 14));
         jButton1.setText("Ingresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,15 +74,13 @@ public class Usuario extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 2, 14));
-		jButton2.setText("Cancelar");
+        jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -139,7 +134,7 @@ public class Usuario extends javax.swing.JFrame {
                 .addGap(53, 53, 53)
                 .addComponent(lblAviso1)
                 .addContainerGap(75, Short.MAX_VALUE))
-            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
