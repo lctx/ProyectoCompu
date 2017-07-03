@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  *
  * @author dell
  */
-public class venta extends javax.swing.JFrame {
+public class venta extends javax.swing.JInternalFrame {
 
     /** Creates new form venta */
     public venta() {

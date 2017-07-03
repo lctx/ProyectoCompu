@@ -20,7 +20,7 @@ import sun.security.krb5.internal.crypto.crc32;
  *
  * @author G Pro
  */
-public class Usuario extends javax.swing.JFrame {
+public class Usuario extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Usuario
@@ -167,36 +167,30 @@ public class Usuario extends javax.swing.JFrame {
             String var2 = txtClave.getText();
 
             while (rs.next()) {
-                Incriptar_Desencriptar c =new Incriptar_Desencriptar();
+                Incriptar_Desencriptar c = new Incriptar_Desencriptar();
                 String var3 = rs.getString("USU_USUARIO");
                 String var4 = rs.getString("USU_LOGIN");
                 String clave = c.Desencriptar(var4);
-               
-               
+
                 if (var1.equals(var3) && var2.equals(clave)) {
                     //para manejar usuario
                     if (("administrador").equals(rs.getString("USU_PERFIL"))) {
-                       
-                        //segunda forma exit(o) termina todo
 
+                        //segunda forma exit(o) termina todo
                         //
                         Menu mn = new Menu();
-                        mn.setExtendedState(MAXIMIZED_BOTH);
                         mn.setVisible(true);
-                       
-                        this.dispose();
-                        
-                    } else  if (rs.getString("USU_PERFIL").equals("secretaria")) {
-                            Menu mn = new Menu();
-                            mn.setExtendedState(MAXIMIZED_BOTH);
-                               mn.setVisible(true);
-                            mn.setVisible(true);
-                            mn.jMenu2.setEnabled(false);
-                             //para ques e cierre el login 
-                        this.dispose();
-                        }
-                    
 
+                        this.dispose();
+
+                    } else if (rs.getString("USU_PERFIL").equals("secretaria")) {
+                        Menu mn = new Menu();
+                        mn.setVisible(true);
+                        mn.setVisible(true);
+                        mn.jMenu2.setEnabled(false);
+                        //para ques e cierre el login 
+                        this.dispose();
+                    }
 
                 } else {
                     lblAviso1.setVisible(true);
@@ -217,7 +211,7 @@ public class Usuario extends javax.swing.JFrame {
             // TODO add your handling code here:
         } catch (Exception ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-            
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

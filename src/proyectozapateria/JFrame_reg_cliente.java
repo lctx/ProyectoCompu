@@ -16,7 +16,7 @@ import javax.swing.JTextField;
  *
  * @author Carlos
  */
-public class JFrame_reg_cliente extends javax.swing.JFrame {
+public class JFrame_reg_cliente extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form JFrame_reg_cliente

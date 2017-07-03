@@ -94,9 +94,19 @@ public class Menu extends JFrame {
         jMenu1.add(jMenuItem_Usuario);
 
         jMenuItem_Clientes.setText("Clientes");
+        jMenuItem_Clientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_ClientesActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem_Clientes);
 
         jMenuItem_Vendedores.setText("Vendedores");
+        jMenuItem_Vendedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_VendedoresActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem_Vendedores);
 
         jMenuBar1.add(jMenu1);
@@ -149,9 +159,8 @@ public class Menu extends JFrame {
 
     private void jMenuItem_VentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_VentasActionPerformed
 
-        productos e= new productos();
+        venta e = new venta();
         jDesktopPane1.add(e);
-        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem_VentasActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
@@ -160,12 +169,14 @@ public class Menu extends JFrame {
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenuItem_ZapateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ZapateriaActionPerformed
-//llamar ventana dentro de un deskopt     
+
+        productos e = new productos();
+        jDesktopPane1.add(e);
 
     }//GEN-LAST:event_jMenuItem_ZapateriaActionPerformed
-    IngresoUsuario usu = new IngresoUsuario();
-    private void jMenuItem_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_UsuarioActionPerformed
 
+    private void jMenuItem_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_UsuarioActionPerformed
+        IngresoUsuario usu = new IngresoUsuario();
         if (usu.isShowing()) { //si ya se tiene abierto otra ventana
             JOptionPane.showMessageDialog(null, "Ventana activa ");
         } else {
@@ -197,6 +208,18 @@ public class Menu extends JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jMenuItem_ClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ClientesActionPerformed
+        // TODO add your handling code here:
+        JFrame_reg_cliente e= new JFrame_reg_cliente();
+        jDesktopPane1.add(e);
+    }//GEN-LAST:event_jMenuItem_ClientesActionPerformed
+
+    private void jMenuItem_VendedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_VendedoresActionPerformed
+        // TODO add your handling code here:
+        JFrame_reg_vendedor e= new JFrame_reg_vendedor();
+        jDesktopPane1.add(e);
+    }//GEN-LAST:event_jMenuItem_VendedoresActionPerformed
 
     /**
      * @param args the command line arguments

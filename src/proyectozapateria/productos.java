@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-public class productos extends javax.swing.JFrame {
+public class productos extends javax.swing.JInternalFrame {
 
     public productos() {
         initComponents();
