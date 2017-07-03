@@ -206,7 +206,6 @@ public class JFrame_reg_vendedor extends javax.swing.JInternalFrame {
         campos[3] = jTextField_apellido.getText().toUpperCase();
         campos[4] = jTextField_direccion.getText().toUpperCase();
         con.escribir("vendedor", codigos, campos);
-//        con.escribir("vendedor", codigos, campos);
     }//GEN-LAST:event_jButton_guardarActionPerformed
 
     private void jTextField_cedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_cedulaKeyTyped

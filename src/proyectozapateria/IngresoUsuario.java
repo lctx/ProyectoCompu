@@ -28,21 +28,21 @@ import org.apache.commons.codec.digest.DigestUtils;
  *
  * @author G Pro
  */
-public class IngresoUsuario extends javax.swing.JInternalFrame {
+public class IngresoUsuario extends javax.swing.JFrame {
 
     /**
      * Creates new form IngresoUsuario
      */
     DefaultTableModel modelo;
+
     public IngresoUsuario() {
 
         initComponents();
-        
+
         bloquearBotonesInicio();
         bloquearTextoInicio();
         crearTablaUsuario("");
-        
-        
+
         tblUsuario.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
             @Override
@@ -55,21 +55,21 @@ public class IngresoUsuario extends javax.swing.JInternalFrame {
                         //getSeleccionRow 
 
                         txtUsuario.setText(tblUsuario.getValueAt(fila, 0).toString());
-                        Incriptar_Desencriptar i=new Incriptar_Desencriptar();
-  String n =i.Desencriptar(tblUsuario.getValueAt(fila, 1).toString());
-txtClave.setText(n);
+                        Incriptar_Desencriptar i = new Incriptar_Desencriptar();
+                        String n = i.Desencriptar(tblUsuario.getValueAt(fila, 1).toString());
+                        txtClave.setText(n);
 
-                       // txtClave.setText(tblUsuario.getValueAt(fila, 1).toString());
+                        // txtClave.setText(tblUsuario.getValueAt(fila, 1).toString());
                         txtNombre.setText(tblUsuario.getValueAt(fila, 2).toString());
                         txtPerfil.setText(tblUsuario.getValueAt(fila, 3).toString());
-                      
-    //            
+
+                        //            
                         txtObservacion.setText(tblUsuario.getValueAt(fila, 4).toString());
                         txtUsuario.setEnabled(false);
                         bloquearBotonesInicio();
                         DesbloquearTexto();
                         bloquearBotonUpdate();
-    //                    btnEliminarUsuario.setEnabled(true);
+                        //                    btnEliminarUsuario.setEnabled(true);
                         txtUsuario.setEditable(false);
                     } catch (Exception ex) {
                         Logger.getLogger(IngresoUsuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -78,7 +78,6 @@ txtClave.setText(n);
 
             }
         });
-
 
     }
 
@@ -104,7 +103,7 @@ txtClave.setText(n);
         btnActualizarUsuario.setEnabled(true);
         btnGuardarUsuario.setEnabled(true);
         btnCancelarUsuario.setEnabled(false);
-   //     btnEliminarUsuario.setEnabled(true);
+        //     btnEliminarUsuario.setEnabled(true);
         btnNuevo.setEnabled(false);
 
         txtClave.setEnabled(true);
@@ -142,7 +141,8 @@ txtClave.setText(n);
 //        txtAn.setEnabled(true);
         txtObservacion.setEnabled(true);
     }
-public void bloquearBotonUpdate() {
+
+    public void bloquearBotonUpdate() {
         btnNuevo.setEnabled(false);
         btnGuardarUsuario.setEnabled(false);
         btnActualizarUsuario.setEnabled(true);
@@ -166,60 +166,23 @@ public void bloquearBotonUpdate() {
         } else if (txtPerfil.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese el Perfil ");
             txtPerfil.requestFocus(true);
-        } // else if (txtAn.getText().isEmpty() ) {
-        //  JOptionPane.showMessageDialog(null, "Ingrese la Año");
-        //  txtAn.requestFocus(true);
-        // }
-        else if (txtObservacion.getText().isEmpty()) {
+        } else if (txtObservacion.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese la Observacion");
             txtObservacion.requestFocus(true);
         } else {
-            String USU_USUARIO, USU_LOGIN, USU_NOMBRE, USU_PERFIL, USU_OBSERVACION;
-            String v =txtClave.getText();
-            Incriptar_Desencriptar c= new Incriptar_Desencriptar();
-            
-            String clave =c.Encriptar(v);
-
-            USU_USUARIO = txtUsuario.getText();
-            USU_LOGIN = clave;
-            System.out.println(clave);
-            USU_NOMBRE = txtNombre.getText();
-            USU_PERFIL = txtPerfil.getText();
-
-            USU_OBSERVACION = txtObservacion.getText();
-
-            Conexion cc = new Conexion();
-            Connection cn = (Connection) cc.conectar();
-            String sql = "";
-            sql = "insert into usuario (USU_USUARIO, USU_LOGIN, USU_NOMBRE,USU_PERFIL, USU_OBSERVACION) values (?,?,?,?,?) ";
-            try {
-                java.sql.PreparedStatement psd = cn.prepareStatement(sql);
-
-
-
-                psd.setString(1, USU_USUARIO);
-                psd.setString(2, USU_LOGIN);
-                psd.setString(3, USU_NOMBRE);
-                psd.setString(4, USU_PERFIL);
-                psd.setString(5, USU_OBSERVACION);
-
-
-
-                int n = psd.executeUpdate();
-
-                if (n > 0) {
-                    JOptionPane.showMessageDialog(null, "Se Inserto el dato correctamente");
-                    limpiarTexto();
-                    bloquearTexto();
-                    bloquearBotonesInicio();
-
-
-
-                }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Se Inserto el dato correctamente");
-            }
-
+            Conexion con = new Conexion();
+            con.conectar();
+            String v = txtClave.getText();
+            Incriptar_Desencriptar c = new Incriptar_Desencriptar();
+            String clave = c.Encriptar(v);
+            String[] codigos = {"USUARIO", "CLAVE", "NOMBRE", "PERFIL", "OBSERVACION"};
+            String[] campos = new String[codigos.length];
+            campos[0] = txtUsuario.getText().toUpperCase();
+            campos[1] = clave;
+            campos[2] = txtNombre.getText().toUpperCase();
+            campos[3] = txtPerfil.getText().toUpperCase();
+            campos[4] = txtObservacion.getText().toUpperCase();
+            con.escribir("usuario", codigos, campos);
         }
 
     }
@@ -230,7 +193,7 @@ public void bloquearBotonUpdate() {
         Connection cn = (Connection) cc.conectar();
         try {
             Statement consulta = cn.createStatement();
-            ResultSet resultado = consulta.executeQuery("Select * from usuario where usuario.USU_USUARIO like '" + id + "'");
+            ResultSet resultado = consulta.executeQuery("Select * from usuario where usuario.USUARIO like '" + id + "'");
             if (!resultado.next()) {
                 //  control();
                 GuardarUsuario();
@@ -238,20 +201,17 @@ public void bloquearBotonUpdate() {
                 JOptionPane.showMessageDialog(null, "el usuario ya existe");
             }
 
-
         } catch (Exception ex) {
-        }}
-    
+        }
+    }
 
     public void crearTablaUsuario(String Dato) {
-         String[] titulos = {"USUARIO", "CONTRASEÑA", "NOMBRE", "PERFIL", "OBSERVACION"};
+        String[] titulos = {"USUARIO", "CLAVE", "NOMBRE", "PERFIL", "OBSERVACION"};
         //2.2 cargar con el numero de campos que tengo
         String[] registros = new String[5];
         //global para la clase el modelo 1.1
         //instancio 1.1
-  modelo = new DefaultTableModel(null, titulos);
-
-
+        modelo = new DefaultTableModel(null, titulos);
 
         //conexion PARA CARGAR MI BD
         Conexion cc = new Conexion();
@@ -259,13 +219,10 @@ public void bloquearBotonUpdate() {
 
         String sql = "";
 
-
         //aumente where para buscar
-
-        //  sql = "Select * from autos where AUT_PLACA ='"+TXT,GETTEXT()+"'"; 
         //3.1 dato mando en el select 
         //3.2 LIKE 
-        sql = "Select * from usuario where USU_USUARIO LIKE '%" + Dato + "%'"; //fila por fila a continuacion de otra se debe aplicar resultset
+        sql = "Select * from usuario where USUARIO LIKE '%" + Dato + "%'"; //fila por fila a continuacion de otra se debe aplicar resultset
 
         try {
             //hacer el statement un normal porque solo selecciono 
@@ -276,11 +233,11 @@ public void bloquearBotonUpdate() {
             ResultSet rs = psd.executeQuery(sql); //son clases propias 
             //2.4 para manejar debo trabajar en un ciclo 
             while (rs.next()) { //2.5 mientras haya una fila siguiente
-                registros[0] = rs.getString("USU_USUARIO"); // 2.6 REGISTROS ES EL VECTOR Y COLOCA CAA¡DA UNO 
-                registros[1] = rs.getString("USU_LOGIN");
-                registros[2] = rs.getString("USU_NOMBRE");
-                registros[3] = rs.getString("USU_PERFIL");
-                registros[4] = rs.getString("USU_OBSERVACION");
+                registros[0] = rs.getString("USUARIO"); // 2.6 REGISTROS ES EL VECTOR Y COLOCA CAA¡DA UNO 
+                registros[1] = rs.getString("CLAVE");
+                registros[2] = rs.getString("NOMBRE");
+                registros[3] = rs.getString("PERFIL");
+                registros[4] = rs.getString("OBSERVACION");
                 //2.5 AGREGAR ESTO A MI TABLA
                 modelo.addRow(registros);
 
@@ -312,16 +269,16 @@ public void bloquearBotonUpdate() {
             Conexion cc = new Conexion();
             Connection cn = (Connection) cc.conectar();
             String sql = "";
-            Incriptar_Desencriptar i=new Incriptar_Desencriptar();
-            String g= i.Encriptar(txtClave.getText());
-            sql = "update usuario set USU_NOMBRE='" + txtNombre.getText() + "',"
-                    + "USU_LOGIN='" + g+ "',"
-                    + "USU_PERFIL='" + txtPerfil.getText() + "',"
-                    + "USU_OBSERVACION='" + txtObservacion.getText() + "' "
-                    + "where USU_USUARIO ='" + txtUsuario.getText() + "'";
+            Incriptar_Desencriptar i = new Incriptar_Desencriptar();
+            String g = i.Encriptar(txtClave.getText());
+            sql = "update usuario set NOMBRE='" + txtNombre.getText() + "',"
+                    + "CLAVE='" + g + "',"
+                    + "PERFIL='" + txtPerfil.getText() + "',"
+                    + "OBSERVACION='" + txtObservacion.getText() + "' "
+                    + "where USUARIO ='" + txtUsuario.getText() + "'";
             bloquearBotonesInicio();
             limpiarTexto();
-         
+
             try {
 
                 PreparedStatement psd = (PreparedStatement) cn.prepareStatement(sql);
@@ -334,7 +291,6 @@ public void bloquearBotonUpdate() {
             }
         }
     }
-  
 
     //NOTA SI NO INSERTA EL DATO PUEDO ENVIAR EL CAMPO SIN DATO COMO MENSAJE
     public void controlSoloLetras(KeyEvent evt) {
@@ -348,8 +304,6 @@ public void bloquearBotonUpdate() {
             evt.consume();
         }
     }
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -497,7 +451,6 @@ public void bloquearBotonUpdate() {
         );
 
         btnGuardarUsuario.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        btnGuardarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/viajesuta/Imagenes/save_3621 (1).png"))); // NOI18N
         btnGuardarUsuario.setText("Guardar");
         btnGuardarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -506,7 +459,6 @@ public void bloquearBotonUpdate() {
         });
 
         btnActualizarUsuario.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        btnActualizarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/viajesuta/Imagenes/user-with-refresh-arrow_icon-icons.com_54730 (1).png"))); // NOI18N
         btnActualizarUsuario.setText("Actualizar");
         btnActualizarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -515,7 +467,6 @@ public void bloquearBotonUpdate() {
         });
 
         btnSalir.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/viajesuta/Imagenes/close_1101 (1).png"))); // NOI18N
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -524,11 +475,9 @@ public void bloquearBotonUpdate() {
         });
 
         btnCancelarUsuario.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        btnCancelarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/viajesuta/Imagenes/cancelar-musica.png"))); // NOI18N
         btnCancelarUsuario.setText("Cancelar");
 
         btnNuevo.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/viajesuta/Imagenes/new_add_user_16734.png"))); // NOI18N
         btnNuevo.setText("Nuevo");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -659,13 +608,13 @@ public void bloquearBotonUpdate() {
     private void btnActualizarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarUsuarioActionPerformed
 
         modificar();
-           crearTablaUsuario("");
+        crearTablaUsuario("");
         // TODO add your handling code here:
     }//GEN-LAST:event_btnActualizarUsuarioActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-dispose();
-        
+        dispose();
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalirActionPerformed
 

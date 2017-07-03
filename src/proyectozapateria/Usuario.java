@@ -20,7 +20,7 @@ import sun.security.krb5.internal.crypto.crc32;
  *
  * @author G Pro
  */
-public class Usuario extends javax.swing.JInternalFrame {
+public class Usuario extends javax.swing.JFrame {
 
     /**
      * Creates new form Usuario

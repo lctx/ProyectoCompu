@@ -161,6 +161,7 @@ public class Menu extends JFrame {
 
         venta e = new venta();
         jDesktopPane1.add(e);
+        e.show();
     }//GEN-LAST:event_jMenuItem_VentasActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
@@ -172,6 +173,7 @@ public class Menu extends JFrame {
 
         productos e = new productos();
         jDesktopPane1.add(e);
+        e.show();
 
     }//GEN-LAST:event_jMenuItem_ZapateriaActionPerformed
 
@@ -213,12 +215,14 @@ public class Menu extends JFrame {
         // TODO add your handling code here:
         JFrame_reg_cliente e= new JFrame_reg_cliente();
         jDesktopPane1.add(e);
+        e.show();
     }//GEN-LAST:event_jMenuItem_ClientesActionPerformed
 
     private void jMenuItem_VendedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_VendedoresActionPerformed
         // TODO add your handling code here:
         JFrame_reg_vendedor e= new JFrame_reg_vendedor();
         jDesktopPane1.add(e);
+        e.show();
     }//GEN-LAST:event_jMenuItem_VendedoresActionPerformed
 
     /**
