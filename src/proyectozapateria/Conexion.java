@@ -19,7 +19,8 @@ import javax.swing.JOptionPane;
  * @author PC08_Lab06_Inv
  */
 public class Conexion {
-     Connection connect = null;
+
+    Connection connect = null;
 
     public Connection conectar() {
         try {
@@ -32,6 +33,7 @@ public class Conexion {
         }
         return connect;
     }
+
     public void escribir(String tabla, String[] codigos, String[] campos) {
         String codigos_sal = "";
         String campos_sal = "";
@@ -61,15 +63,15 @@ public class Conexion {
             INGRESO.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Error sql "+e);
-            JOptionPane.showMessageDialog(null,"ingreso fallido");
+            JOptionPane.showMessageDialog(null, "Error sql " + e);
+            JOptionPane.showMessageDialog(null, "ingreso fallido");
         }
 
     }
-    
-    public void eliminar(String tabla,String campo, String valor) {
+
+    public void eliminar(String tabla, String campo, String valor) {
         ResultSet rs = null;
-        String sql = "DELETE FROM " + tabla+" WHERE "+campo+"="+valor;
+        String sql = "DELETE FROM " + tabla + " WHERE " + campo + "=" + valor;
         try {
             PreparedStatement stmt = connect.prepareStatement(sql);
             rs = stmt.executeQuery();
@@ -78,19 +80,37 @@ public class Conexion {
             e.printStackTrace();
         }
     }
-    
-    public void actualizar(String tabla,String campo1,String campo2, String valor1,String valor2,String comparacion,String comp_valor) {
-        ResultSet rs = null;
-        String sql = "UPDATE " + tabla+" SET "+campo1+"= "+valor1+", "+campo2+"= "+valor2+" WHERE "+comparacion+" = "+comp_valor;
+
+    public void actualizar(String tabla, String[] campos, String[] valores, String consulta) {
+        String campos_f = "";
+        for (int i = 0; i < campos.length; i++) {
+            if (i == campos.length - 1) {
+                campos_f += campos[i] + " = " + "?";
+            } else {
+                campos_f += campos[i] + " = " + "?" + " , ";
+            }
+        }
+        System.out.println(campos_f);
+        String sql = "UPDATE " + tabla + " SET " + campos_f + " " + consulta;
+        
         try {
             PreparedStatement stmt = connect.prepareStatement(sql);
-            rs = stmt.executeQuery();
-            rs.close();
+            for (int i = 0; i < campos.length; i++) {
+                stmt.setString(i+1, valores[i]);
+                System.out.println(stmt);
+            }
+            int a =stmt.executeUpdate();
+             if (a > 0) {
+                JOptionPane.showMessageDialog(null, "Se actualizo correctamente");
+            }
+            stmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error sql " + e);
+            JOptionPane.showMessageDialog(null, "no se pudo actualizar");
         }
     }
-    
+
     public ResultSet consultar(String tabla) {
         ResultSet rs = null;
         String sql = "SELECT * FROM " + tabla;
@@ -103,10 +123,10 @@ public class Conexion {
         }
         return rs;
     }
-    
-    public ResultSet consultar(String tabla, String cam_consultar,String consulta) {
+
+    public ResultSet consultar(String tabla, String cam_consultar, String consulta) {
         ResultSet rs = null;
-        String sql = "SELECT * FROM " + tabla+" WHERE "+cam_consultar+" = "+consulta;
+        String sql = "SELECT * FROM " + tabla + " WHERE " + cam_consultar + " = " + consulta;
         try {
             PreparedStatement stmt = connect.prepareStatement(sql);
             rs = stmt.executeQuery();
@@ -116,46 +136,47 @@ public class Conexion {
         }
         return rs;
     }
-    
-    public ResultSet consultar(String tabla,String campo) {
+
+    public ResultSet consultar(String tabla, String campo) {
         ResultSet rs = null;
-        String sql = "SELECT "+campo+" FROM " + tabla+" ;";
+        String sql = "SELECT " + campo + " FROM " + tabla + " ;";
         try {
             PreparedStatement stmt = connect.prepareStatement(sql);
             rs = stmt.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        }catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             e.printStackTrace();
             return null;
         }
         return rs;
     }
-    
-    public ResultSet consulta_compleja(String tabla,String[] campos,String condicion) {
+
+    public ResultSet consulta_compleja(String tabla, String[] campos, String condicion) {
         //condicion es la condicion compleja ejemplo where a='1' and b='2'
         //esa condicion debe ser tratada antes de enviarse a este metodo
-        String campos_cont="";
+        String campos_cont = "";
         for (int i = 0; i < campos.length; i++) {
-            if (i==campos.length-1) {
-                campos_cont+=" "+campos[i];
-            }else{
-                campos_cont+=" "+campos[i]+",";
+            if (i == campos.length - 1) {
+                campos_cont += " " + campos[i];
+            } else {
+                campos_cont += " " + campos[i] + ",";
             }
         }
         ResultSet rs = null;
-        String sql = "SELECT "+campos_cont+" FROM " + tabla+" "+condicion+" ;";
+        String sql = "SELECT " + campos_cont + " FROM " + tabla + " " + condicion + " ;";
         try {
             PreparedStatement stmt = connect.prepareStatement(sql);
             rs = stmt.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
-        }catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             e.printStackTrace();
             return null;
         }
         return rs;
     }
+
 }

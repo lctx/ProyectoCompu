@@ -216,50 +216,6 @@ public class IngresoUsuario extends javax.swing.JFrame {
         tblUsuario.setModel(modelo);
     }
 
-    public void crearTablaUsuario(String Dato) {
-        Conexion cc = new Conexion();
-        Connection cn = (Connection) cc.conectar();
-        String[] titulos = {"USUARIO", "CLAVE", "NOMBRE", "PERFIL", "OBSERVACION"};
-        String[] registros = new String[5];
-        //global para la clase el modelo 1.1
-        //instancio 1.1
-        modelo = new DefaultTableModel(null, titulos);
-
-        //conexion PARA CARGAR MI BD
-        String sql = "";
-
-        //aumente where para buscar
-        //3.1 dato mando en el select 
-        //3.2 LIKE 
-        sql = "Select * from usuario where USUARIO LIKE '%" + Dato + "%'"; //fila por fila a continuacion de otra se debe aplicar resultset
-
-        try {
-            //hacer el statement un normal porque solo selecciono 
-            Statement psd = cn.createStatement();
-
-            //2.3 necesito una fila separada por fila debo hacer Resulset= maneja el resultado por filas
-            //para eso se maneja :
-            ResultSet rs = psd.executeQuery(sql); //son clases propias 
-            //2.4 para manejar debo trabajar en un ciclo 
-            while (rs.next()) { //2.5 mientras haya una fila siguiente
-                registros[0] = rs.getString("USUARIO"); // 2.6 REGISTROS ES EL VECTOR Y COLOCA CAA¡DA UNO 
-                registros[1] = rs.getString("CLAVE");
-                registros[2] = rs.getString("NOMBRE");
-                registros[3] = rs.getString("PERFIL");
-                registros[4] = rs.getString("OBSERVACION");
-                //2.5 AGREGAR ESTO A MI TABLA
-                modelo.addRow(registros);
-
-            }
-
-            //llenar model9o
-            tblUsuario.setModel(modelo);
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-    }
-
     public void modificar() {
         if (txtClave.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese la Clave");
@@ -277,26 +233,21 @@ public class IngresoUsuario extends javax.swing.JFrame {
         } else {
             Conexion cc = new Conexion();
             Connection cn = (Connection) cc.conectar();
-            String sql = "";
             Incriptar_Desencriptar i = new Incriptar_Desencriptar();
             String g = i.Encriptar(txtClave.getText());
-            sql = "update usuario set NOMBRE='" + txtNombre.getText() + "',"
-                    + "CLAVE='" + g + "',"
-                    + "PERFIL='" + txtPerfil.getText() + "',"
-                    + "OBSERVACION='" + txtObservacion.getText() + "' "
-                    + "where USUARIO ='" + txtUsuario.getText() + "'";
+            String[] campos={"CLAVE","PERFIL","OBSERVACION"};
+            String[] valores= new String[campos.length];
+            valores[0]=g;
+            valores[1]=txtPerfil.getText();
+            valores[2]=txtObservacion.getText();
+            String consulta="WHERE USUARIO='"+txtUsuario.getText()+"'";
+            cc.actualizar("usuario", campos, valores, consulta);
             bloquearBotonesInicio();
             limpiarTexto();
-
             try {
-
-                PreparedStatement psd = (PreparedStatement) cn.prepareStatement(sql);
-                int n = psd.executeUpdate();
-                if (n > 0) {
-                    JOptionPane.showMessageDialog(null, "Se actualizo Correctamente");
-                }
+                cargar_Tabla();
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex);
+                Logger.getLogger(IngresoUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
