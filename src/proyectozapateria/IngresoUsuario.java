@@ -28,20 +28,20 @@ import org.apache.commons.codec.digest.DigestUtils;
  *
  * @author G Pro
  */
-public class IngresoUsuario extends javax.swing.JInternalFrame {
+public class IngresoUsuario extends javax.swing.JFrame {
 
     /**
      * Creates new form IngresoUsuario
      */
     DefaultTableModel modelo;
 
-    public IngresoUsuario() {
+    public IngresoUsuario() throws SQLException {
 
         initComponents();
 
         bloquearBotonesInicio();
         bloquearTextoInicio();
-        crearTablaUsuario("");
+        cargar_Tabla();
 
         tblUsuario.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
@@ -83,7 +83,6 @@ public class IngresoUsuario extends javax.swing.JInternalFrame {
 
     public void bloquearTextoInicio() {
         txtClave.setEnabled(false);
-
         txtNombre.setEnabled(false);
         txtObservacion.setEnabled(false);
         txtPerfil.setEnabled(false);
@@ -103,11 +102,8 @@ public class IngresoUsuario extends javax.swing.JInternalFrame {
         btnActualizarUsuario.setEnabled(true);
         btnGuardarUsuario.setEnabled(true);
         btnCancelarUsuario.setEnabled(false);
-        //     btnEliminarUsuario.setEnabled(true);
         btnNuevo.setEnabled(false);
-
         txtClave.setEnabled(true);
-
         txtNombre.setEnabled(true);
         txtObservacion.setEnabled(true);
         txtPerfil.setEnabled(true);
@@ -115,19 +111,16 @@ public class IngresoUsuario extends javax.swing.JInternalFrame {
     }
 
     public void bloquearTexto() {
-
         txtClave.setEnabled(false);
         txtNombre.setEnabled(false);
         txtPerfil.setEnabled(false);
         txtUsuario.setEnabled(false);
-//        txtAn.setEnabled(false);
         txtObservacion.setEnabled(false);
     }
 
     public void limpiarTexto() {
         txtClave.setText("");
         txtNombre.setText("");
-
         txtUsuario.setText("");
         txtPerfil.setText("");
         txtObservacion.setText("");
@@ -138,7 +131,6 @@ public class IngresoUsuario extends javax.swing.JInternalFrame {
         txtUsuario.setEnabled(true);
         txtNombre.setEnabled(true);
         txtPerfil.setEnabled(true);
-//        txtAn.setEnabled(true);
         txtObservacion.setEnabled(true);
     }
 
@@ -147,7 +139,6 @@ public class IngresoUsuario extends javax.swing.JInternalFrame {
         btnGuardarUsuario.setEnabled(false);
         btnActualizarUsuario.setEnabled(true);
         btnCancelarUsuario.setEnabled(false);
-//        btnEliminarUsuario.setEnabled(false);
         btnSalir.setEnabled(true);
     }
 
@@ -204,19 +195,37 @@ public class IngresoUsuario extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
         }
     }
+    
+    public void cargar_Tabla() throws SQLException{
+        Conexion cc = new Conexion();
+        Connection cn = (Connection) cc.conectar();
+        String[] campos = {"USUARIO", "CLAVE", "NOMBRE", "PERFIL", "OBSERVACION"};
+        ResultSet rs = cc.consulta_compleja("usuario",campos,"");
+        modelo = new DefaultTableModel(null, campos);
+        while (rs.next()) {
+            // Se crea un array que será una de las filas de la tabla. 
+            Object[] fila = new Object[campos.length]; // Hay tres columnas en la tabla
+
+            // Se rellena cada posición del array con una de las columnas de la tabla en base de datos.
+            for (int i = 0; i < campos.length; i++) {
+                fila[i] = rs.getObject(i + 1); // El primer indice en rs es el 1, no el cero, por eso se suma 1.
+            }
+            // Se añade al modelo la fila completa.
+            modelo.addRow(fila);
+        }
+        tblUsuario.setModel(modelo);
+    }
 
     public void crearTablaUsuario(String Dato) {
+        Conexion cc = new Conexion();
+        Connection cn = (Connection) cc.conectar();
         String[] titulos = {"USUARIO", "CLAVE", "NOMBRE", "PERFIL", "OBSERVACION"};
-        //2.2 cargar con el numero de campos que tengo
         String[] registros = new String[5];
         //global para la clase el modelo 1.1
         //instancio 1.1
         modelo = new DefaultTableModel(null, titulos);
 
         //conexion PARA CARGAR MI BD
-        Conexion cc = new Conexion();
-        Connection cn = (Connection) cc.conectar();
-
         String sql = "";
 
         //aumente where para buscar
@@ -314,10 +323,6 @@ public class IngresoUsuario extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         txtClave = new javax.swing.JTextField();
@@ -338,32 +343,6 @@ public class IngresoUsuario extends javax.swing.JInternalFrame {
         btnNuevo = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblUsuario = new javax.swing.JTable();
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("REGISTRO USUARIO");
@@ -586,9 +565,13 @@ public class IngresoUsuario extends javax.swing.JInternalFrame {
     private void btnGuardarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarUsuarioActionPerformed
 
         verificarDatos();
-        crearTablaUsuario("");
-
-        // TODO add your handling code here:
+        try {
+            cargar_Tabla();
+            
+            // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(IngresoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnGuardarUsuarioActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
@@ -608,8 +591,12 @@ public class IngresoUsuario extends javax.swing.JInternalFrame {
     private void btnActualizarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarUsuarioActionPerformed
 
         modificar();
-        crearTablaUsuario("");
-        // TODO add your handling code here:
+        try {
+            cargar_Tabla();
+            // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(IngresoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnActualizarUsuarioActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -656,7 +643,11 @@ public class IngresoUsuario extends javax.swing.JInternalFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new IngresoUsuario().setVisible(true);
+                try {
+                    new IngresoUsuario().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(IngresoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -674,11 +665,7 @@ public class IngresoUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable tblUsuario;
     private javax.swing.JTextField txtClave;
     private javax.swing.JTextField txtNombre;

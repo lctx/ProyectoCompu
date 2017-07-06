@@ -6,8 +6,11 @@ package proyectozapateria;
 
 import com.mysql.jdbc.Connection;
 import java.awt.Dimension;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -159,7 +162,12 @@ public class Menu extends JFrame {
 
     private void jMenuItem_VentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_VentasActionPerformed
 
-        venta e = new venta();
+        venta e = null;
+        try {
+            e = new venta();
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         jDesktopPane1.add(e);
         e.show();
     }//GEN-LAST:event_jMenuItem_VentasActionPerformed
@@ -178,7 +186,12 @@ public class Menu extends JFrame {
     }//GEN-LAST:event_jMenuItem_ZapateriaActionPerformed
 
     private void jMenuItem_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_UsuarioActionPerformed
-        IngresoUsuario usu = new IngresoUsuario();
+        IngresoUsuario usu = null;
+        try {
+            usu = new IngresoUsuario();
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (usu.isShowing()) { //si ya se tiene abierto otra ventana
             JOptionPane.showMessageDialog(null, "Ventana activa ");
         } else {
